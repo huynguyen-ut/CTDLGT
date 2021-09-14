@@ -26,6 +26,10 @@ void InsertFirst(Element *e, LinkedList &L){
     L.head=e;
    }
 }
+void InsertAfterP(Element *e, Element *p){
+   e->pointer=p->pointer;
+   p->pointer=e;
+}
 void InsertTail(Element *e, LinkedList &L){
    if(L.tail==NULL)
     L.head=L.tail=e;
@@ -41,6 +45,21 @@ void TravleList(LinkedList L){
         p=p->pointer;
      }
 }
+int KTNT(int n){
+    for(int i=2;i<n/2;i++)
+        if(n%i==0)
+        return 0;
+    return 1;
+}
+Element * FindNT(LinkedList L){
+    Element *p=L.head;
+    while(p!=NULL){
+        if(KTNT(p->data))
+            return p;
+
+        p=p->pointer;
+     }
+}
 int main()
 {
     LinkedList L;
@@ -49,10 +68,14 @@ int main()
     InsertFirst(e,L);
     e=CreateElement(9);
     InsertFirst(e,L);
-    e=CreateElement(79);
+    e=CreateElement(88);
     InsertFirst(e,L);
     e=CreateElement(20);
     InsertTail(e,L);
+
+    Element*p=FindNT(L);
+    e=CreateElement(100);
+    InsertAfterP(e,p);
     TravleList(L);
     return 0;
 }
