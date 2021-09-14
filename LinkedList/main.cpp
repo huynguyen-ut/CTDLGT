@@ -38,6 +38,11 @@ void InsertTail(Element *e, LinkedList &L){
         L.tail=e;
     }
 }
+void DeleteFirst(LinkedList &L){
+    Element *p=L.head;
+    L.head=L.head->pointer;
+    delete p;
+}
 void TravleList(LinkedList L){
      Element *p=L.head;
      while(p!=NULL){
@@ -76,6 +81,9 @@ int main()
     Element*p=FindNT(L);
     e=CreateElement(100);
     InsertAfterP(e,p);
+    TravleList(L);
+    cout<<'\n';
+    DeleteFirst(L);
     TravleList(L);
     return 0;
 }
