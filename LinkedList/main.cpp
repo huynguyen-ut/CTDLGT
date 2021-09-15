@@ -6,6 +6,7 @@ struct Element{
     int data;
     Element *pointer;
 };
+
 struct LinkedList{
     Element *head;
     Element *tail;
@@ -128,8 +129,10 @@ int main()
     TravleList(L);
     cout<<'\n';
     Element*p=FindNT(L);
-   // e=CreateElement(100);
-    //InsertAfterP(e,p);
+    e=CreateElement(100);
+    InsertAfterP(e,p);
+    TravleList(L);
+    cout<<'\n';
     DeleteP(p,L);
     TravleList(L);
     /*cout<<'\n';
