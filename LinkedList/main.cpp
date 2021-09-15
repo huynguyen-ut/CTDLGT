@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+
 struct Element{
     int data;
     Element *pointer;
@@ -9,15 +10,19 @@ struct LinkedList{
     Element *head;
     Element *tail;
 };
+
+// ham khoi tao
 void initList(LinkedList& L){
     L.head=L.tail=NULL;
 }
+// ham tao thanh phan
 Element* CreateElement(int data){
     Element *e=new Element;
     e->data=data;
     e->pointer=NULL;
     return e;
 }
+// ham chen dau
 void InsertFirst(Element *e, LinkedList &L){
    if(L.head==NULL)
     L.head=L.tail=e;
@@ -26,10 +31,7 @@ void InsertFirst(Element *e, LinkedList &L){
     L.head=e;
    }
 }
-void InsertAfterP(Element *e, Element *p){
-   e->pointer=p->pointer;
-   p->pointer=e;
-}
+
 void InsertTail(Element *e, LinkedList &L){
    if(L.tail==NULL)
     L.head=L.tail=e;
@@ -38,11 +40,56 @@ void InsertTail(Element *e, LinkedList &L){
         L.tail=e;
     }
 }
+
+void InsertAfterP(Element *e, Element *p){
+   if(p!=NULL){
+   e->pointer=p->pointer;
+   p->pointer=e;
+   }
+}
+
 void DeleteFirst(LinkedList &L){
+    if(L.head!=NULL){
     Element *p=L.head;
     L.head=L.head->pointer;
     delete p;
+    }
 }
+
+void DeleteTail(LinkedList &L){
+    if(L.tail!=NULL){
+     Element *p=L.head;
+
+     while(p->pointer!=L.tail)
+        p=p->pointer;
+
+     Element *tmp=L.tail;
+     L.tail=p;
+     p->pointer=NULL;
+     delete tmp;
+
+     }
+}
+void DeleteP(Element *q,LinkedList &L){
+    if(L.tail!=NULL){
+     Element *p=L.head;
+
+     while(p->pointer!=q)
+        p=p->pointer;
+     p->pointer=q->pointer;
+
+     delete q;
+
+     }
+}
+void DeleteAfterP(Element*p){
+     if(p!=NULL&&p->pointer!=NULL){
+        Element *tmp=p->pointer;
+        p->pointer=p->pointer->pointer;
+        delete tmp;
+     }
+}
+
 void TravleList(LinkedList L){
      Element *p=L.head;
      while(p!=NULL){
@@ -78,12 +125,15 @@ int main()
     e=CreateElement(20);
     InsertTail(e,L);
 
-    Element*p=FindNT(L);
-    e=CreateElement(100);
-    InsertAfterP(e,p);
     TravleList(L);
     cout<<'\n';
-    DeleteFirst(L);
+    Element*p=FindNT(L);
+   // e=CreateElement(100);
+    //InsertAfterP(e,p);
+    DeleteP(p,L);
     TravleList(L);
+    /*cout<<'\n';
+    DeleteTail(L);
+    TravleList(L);*/
     return 0;
 }
