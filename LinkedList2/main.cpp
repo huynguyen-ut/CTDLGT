@@ -14,6 +14,7 @@ struct LinkedList2{
 void initList(LinkedListC& L){
     L.head=L.tail=NULL;
 }
+
 void InsertFirst(Element *e, LinkedList &L){
    if(L.head==NULL)
     L.head=L.tail=e;
