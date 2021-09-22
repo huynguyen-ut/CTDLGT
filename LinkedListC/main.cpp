@@ -1,37 +1,38 @@
 #include <iostream>
 
 using namespace std;
-
 struct Element{
     int data;
     Element* next;
-    Element* prev;
+
 };
-struct LinkedList2{
+struct LinkedListC{
     Element *head;
     Element *tail;
+
 };
 void initList(LinkedListC& L){
     L.head=L.tail=NULL;
 }
-void InsertFirst(Element *e, LinkedList &L){
-   if(L.head==NULL)
-    L.head=L.tail=e;
-   else{
-    e->next=L.head;
-    L.head=e;
-   }
-}
-
 // ham tao thanh phan
 Element* CreateElement(int data){
     Element *e=new Element;
     e->data=data;
     e->next=NULL;
-    e->prev=NULL;
     return e;
 }
-
+void InsertFirst(Element *e, LinkedListC &L){
+   if(L.head==NULL){
+    L.head=e;
+    L.tail=e;
+    e.next=e;
+    }
+   else{
+    e->pointer=L.head;
+    L.head=e;
+    L.tail->next=e;
+   }
+}
 int main()
 {
     cout << "Hello world!" << endl;
