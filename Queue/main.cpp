@@ -44,7 +44,7 @@ Element * Dequeue(Queue &q){
      Element *tmp=q.tail;
      q.tail=p;
      p->next=NULL;
-     delete tmp;
+     return tmp;
 
      }
 }

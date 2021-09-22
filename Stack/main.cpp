@@ -4,7 +4,6 @@ using namespace std;
 struct Element{
     int data;
     Element* next;
-    int number;
 };
 struct Stack{
     Element * Head;
