@@ -29,7 +29,7 @@ void push(Element *e,Stack& S){
    S.number++;
 }
 bool isEmpty(Stack S){
-    if(S.number>0)
+    if(S.number==0)
         return true;
     else false;
 }

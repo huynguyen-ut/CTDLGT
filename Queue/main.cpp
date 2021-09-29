@@ -6,8 +6,8 @@ struct Element{
     Element* next;
 };
 struct Queue{
-    Element * Head;
-    Element * Tail;
+    Element * head;
+    Element * tail;
     int number;
 };
 Element* CreateElement(int data){
@@ -17,14 +17,14 @@ Element* CreateElement(int data){
     return e;
 }
 void InitQueue(Queue& q){
-    q.head=q.Tail=NULL;
+    q.head=q.tail=NULL;
     q.number=0;
 }
 void Enqueue(Element *e,Queue &q){
 if(q.head==NULL)
     q.head=q.tail=e;
    else{
-    e->pointer=q.head;
+    e->next=q.head;
     q.head=e;
    }
    q.number++;
@@ -47,10 +47,26 @@ Element * Dequeue(Queue &q){
      return tmp;
 
      }
+     return NULL;
 }
-
+void TravelQueue(Queue q){
+     Element *p=q.head;
+     while(p!=NULL){
+        cout<<p->data<<'\t';
+        p=p->next;
+     }
+}
 int main()
 {
-    cout << "Hello world!" << endl;
+    Queue q;
+    InitQueue(q);
+    Enqueue(CreateElement(7),q);
+    Enqueue(CreateElement(5),q);
+    Enqueue(CreateElement(6),q);
+    Enqueue(CreateElement(9),q);
+    TravelQueue(q);
+    Dequeue(q);
+    cout<<'\n';
+    TravelQueue(q);
     return 0;
 }
