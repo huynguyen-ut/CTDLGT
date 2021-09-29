@@ -11,11 +11,11 @@ struct LinkedList2{
     Element *head;
     Element *tail;
 };
-void initList(LinkedListC& L){
+void initList(LinkedList2& L){
     L.head=L.tail=NULL;
 }
 
-void InsertFirst(Element *e, LinkedList &L){
+void InsertFirst(Element *e, LinkedList2 &L){
    if(L.head==NULL)
     L.head=L.tail=e;
    else{
