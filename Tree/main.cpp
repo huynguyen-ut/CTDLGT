@@ -57,7 +57,8 @@ int main()
     TravelLRN(T.root);
 
    // DeleteNode(SearchTree(T.root,33));
-   //  cout<<"LRN-------\n";
+     cout<<"\n Chieu cao cua cay: "<<HighTree(T.root);
+     cout<<"\n Tong so node la: "<<NumberLeaf(T.root);
   //  TravelLRN(T.root);
     return 0;
 }
