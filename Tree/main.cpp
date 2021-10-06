@@ -51,14 +51,14 @@ int main()
     put(createNode(19),T);
     cout<<"NLR-------\n";
      TravelNLR(T.root);
-  //  cout<<"LNR-------\n";
-   // TravelLNR(T.root);
-  //  cout<<"LRN-------\n";
-  //  TravelLRN(T.root);
-
-    DeleteNode(SearchTree(T.root,33));
-     cout<<"LRN-------\n";
+    cout<<"LNR-------\n";
+   TravelLNR(T.root);
+   cout<<"LRN-------\n";
     TravelLRN(T.root);
+
+   // DeleteNode(SearchTree(T.root,33));
+   //  cout<<"LRN-------\n";
+  //  TravelLRN(T.root);
     return 0;
 }
 Node* createNode(int k){
@@ -87,8 +87,7 @@ bool put(Node*n,Tree &T){
             p=p->right;
         else
             p=p->left;}
-
-      }
+     }
 
       if(n->key>p->key)
         p->right=n;
@@ -157,6 +156,7 @@ void DeleteNode(Node *p){
               q=p->left;
               while(q->right!=NULL)
                 q=q->right;
+              q->parent->right=q->left;
               p->key=q->key;
               p=q;
         }
@@ -167,7 +167,7 @@ void DeleteNode(Node *p){
 int NumberLeaf(Node *root){
      Node* p=root;
      if(p==NULL) return 0;
-     if(p->left==NULL&&p->right=NULL)
+     if(p->left==NULL&&p->right==NULL)
         return 1;
      else return NumberLeaf(p->left)+NumberLeaf(p->right);
 }
@@ -175,10 +175,10 @@ int NumberLeaf(Node *root){
 int HightTree(Node *root){
     Node *p=root;
     if(p==NULL) return -1;
-     if(p->left==NULL&&p->right=NULL)
+     if(p->left==NULL&&p->right==NULL)
         return 0;
-     else { int T=HightTree(p->left)
-            int P=HightTree(p->right)
+     else { int T=HightTree(p->left);
+            int P=HightTree(p->right);
             return T>P?T+1:P+1;
 
           }
