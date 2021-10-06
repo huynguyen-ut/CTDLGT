@@ -22,7 +22,7 @@ Node * SearchTree(Node *root, int x);
 Node * SearchTreeDQ(Node *root, int x);
 void DeleteNode(Node *);
 int NumberLeaf(Node *);
-int HightTree(Node *);
+int HighTree(Node *);
 int main()
 {
     Tree T;
@@ -156,7 +156,14 @@ void DeleteNode(Node *p){
               q=p->left;
               while(q->right!=NULL)
                 q=q->right;
-              q->parent->right=q->left;
+             /*
+             q=p->right;
+              while(q->left!=NULL)
+                q=q->left;
+
+             */
+              q->parent->right=q->left; //
+
               p->key=q->key;
               p=q;
         }
@@ -172,13 +179,13 @@ int NumberLeaf(Node *root){
      else return NumberLeaf(p->left)+NumberLeaf(p->right);
 }
 
-int HightTree(Node *root){
+int HighTree(Node *root){
     Node *p=root;
     if(p==NULL) return -1;
      if(p->left==NULL&&p->right==NULL)
         return 0;
-     else { int T=HightTree(p->left);
-            int P=HightTree(p->right);
+     else { int T=HighTree(p->left);
+            int P=HighTree(p->right);
             return T>P?T+1:P+1;
 
           }
