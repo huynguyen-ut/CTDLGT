@@ -38,22 +38,22 @@ int Put(Node *root, int x)
 		if(root->key>x){
 
                 res=Put(root->left, x);
-                if(res==-1) return res;
+                if(res<1) return res;
 
                 switch(root->bal){
                   case -1: if(root->left->bal==-1)  // LL
                            Rotate_LL(root);
                            if(root->left->bal==1)   // LR
                            Rottae_LR(root);
-                           return 1;
+                           return 0;
                   case 0:  root->bal=-1; return 1;
                   case 1:  root->bal=0 ;  return 0;
                 }
               }
 		else {
                 res=Put(root->right, x);
-            // continue
-                return }
+            // continue  ????
+                }
 	}
 	root = createNode(x);
 	return 1;
@@ -71,6 +71,13 @@ void Rotate_LL(Node *T)
 	}
 	T1->bal=0;
 	T=T1;
+}
+
+void Rotate_LR(Node *T){
+}
+void Rotate_RR(Node *T){
+}
+void Rotate_RL(Node *T){
 }
 
 int main()
