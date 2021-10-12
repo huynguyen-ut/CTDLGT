@@ -59,7 +59,7 @@ int Put(Node *root, int x)
 	return 1;
 }
 
-void Rotate_LL(Tree &T)
+void Rotate_LL(Node *T)
 {	Node *T1 = T->Left;
 	T->Left = T1->Right; T1->Right=T;
 	switch(T1->bal)
