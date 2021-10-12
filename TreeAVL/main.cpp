@@ -31,6 +31,9 @@ void InitTree(Tree &T){
 
 int Put(Node *root, int x)
 {
+    // return 0 neu khong lm thay doi chieu cao
+    // return 1 chieu cao thay doi
+    // return -1 khong chen
     int res=0;
 	if(root!=NULL)
 	{
@@ -38,7 +41,7 @@ int Put(Node *root, int x)
 		if(root->key>x){
 
                 res=Put(root->left, x);
-                if(res<1) return res;
+                if(res<1) return res;  // khong lm thay doi chieu cao
 
                 switch(root->bal){
                   case -1: if(root->left->bal==-1)  // LL
@@ -53,6 +56,16 @@ int Put(Node *root, int x)
 		else {
                 res=Put(root->right, x);
             // continue  ????
+               if(res<1) return res;
+
+                switch(root->bal){
+                  case -1: root->bal=0 ;  return 0;
+                  case 0:  root->bal=1; return 1;
+                  case 1:  if(root->right->bal==1)  // RR
+                           Rotate_RR(root);
+                           if(root->right->bal==-1)   // RL
+                           Rottae_RL(root);
+                           return 0;
                 }
 	}
 	root = createNode(x);
