@@ -56,17 +56,7 @@ int Put(Node *root, int x)
 		else {
                 res=Put(root->right, x);
             // continue  ????
-               if(res<1) return res;
 
-                switch(root->bal){
-                  case -1: root->bal=0 ;  return 0;
-                  case 0:  root->bal=1; return 1;
-                  case 1:  if(root->right->bal==1)  // RR
-                           Rotate_RR(root);
-                           if(root->right->bal==-1)   // RL
-                           Rottae_RL(root);
-                           return 0;
-                }
 	}
 	root = createNode(x);
 	return 1;
@@ -87,10 +77,13 @@ void Rotate_LL(Node *T)
 }
 
 void Rotate_LR(Node *T){
+
 }
 void Rotate_RR(Node *T){
+
 }
 void Rotate_RL(Node *T){
+
 }
 
 int main()
