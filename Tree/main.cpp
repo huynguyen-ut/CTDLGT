@@ -62,7 +62,7 @@ int main()
   //  TravelLRN(T.root);
     return 0;
 }
-Node* createNode(int k){
+Node* CreateNode(int k){
    Node *n=new Node;
    n->key=k;
    n->left=NULL;
@@ -74,7 +74,7 @@ void InitTree(Tree &T){
    T.root=NULL;
    T.NumberNode=0;
 }
-bool put(Node*n,Tree &T){
+bool Put(Node*n,Tree &T){
       Node *p=T.root;
       if(T.root==NULL){
         T.root=n;
@@ -97,6 +97,17 @@ bool put(Node*n,Tree &T){
        n->parent=p;
       return true;
 
+}
+int PutDQ(Node *root, int x)
+{
+	if(root!=NULL)
+	{
+		if(root->key == x)return 0;
+		if(root->key>x)return PutDQ(root->left, x);
+		else return PutDQ(root->right, x);
+	}
+	root = CreateNode(x);
+	return 1;
 }
 
 void TravelNLR(Node *p){

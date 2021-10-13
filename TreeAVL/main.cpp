@@ -19,16 +19,22 @@ struct Tree{
 };
 Node* createNode(int k);
 void InitTree(Tree &T);
-int Put(Node *root, int x, Node* parent);
+int Put(Node *&root, Node* x, Node* parent);
 int PutNodeTree(Tree &tree, int x);
-void Rotate_LL(Node *T);
-void Rotate_LR(Node *T);
-void Rotate_RR(Node *T);
-void Rotate_RL(Node *T);
+void Rotate_LL(Node *&T);
+void Rotate_LR(Node *&T);
+void Rotate_RR(Node *&T);
+void Rotate_RL(Node *&T);
 int main()
 {
     Tree AVL;
-    InitTree
+    InitTree(AVL);
+    PutNodeTree(AVL,6);
+    PutNodeTree(AVL,5);
+    PutNodeTree(AVL,4);
+    //.....
+
+
     return 0;
 }
 Node* createNode(int k){
@@ -49,7 +55,7 @@ void InitTree(Tree &T){
    T.Hight=0;
 }
 
-int Put(Node *root, int x, Node* parent)
+int Put(Node* &root, Node * x, Node* parent)
 {
     // return 0 neu khong lm thay doi chieu cao
     // return 1 chieu cao thay doi
@@ -57,8 +63,8 @@ int Put(Node *root, int x, Node* parent)
     int res=0;
 	if(root!=NULL)
 	{
-		if(root->key == x)return -1;
-		if(root->key>x){
+		if(root->key == x->key)return -1;
+		if(root->key>x->key){
 
                 res=Put(root->left, x,root);
                 if(res<1) return res;  // khong lm thay doi chieu cao
@@ -66,8 +72,9 @@ int Put(Node *root, int x, Node* parent)
                 switch(root->bal){
                   case -1: if(root->left->bal==-1)  // LL
                            Rotate_LL(root);
-                           if(root->left->bal==1)   // LR
-                           Rottae_LR(root);
+                           else
+                             if(root->left->bal==1)   // LR
+                             Rotate_LR(root);
                            return 0;
                   case 0:  root->bal=-1; return 1;
                   case 1:  root->bal=0 ;  return 0;
@@ -77,20 +84,28 @@ int Put(Node *root, int x, Node* parent)
                 res=Put(root->right, x,root);
             // continue  ????
 
-	}
+	         }
+    }
 
-	Node *tmp = createNode(x);
-	tmp.parent=parent;
-	root=tmp;
+	//Node *tmp = createNode(x);
+	x->parent=parent;
+	root=x;
 	return 1;
 }
-int PutNodeTree(Tree &tree, int x){
-    if(Put(tree.root,x,NULL)!=-1)
+int PutNodeTree(Tree &tree, int x){ //insert node into tree
+    Node *p=tree.root;
+    Node *X = createNode(x);
+    if(Put(p,X,NULL)!=-1){
+        if(tree.root==NULL)
+            tree.root=X;
         tree.NumberNode++;
+
+        }
+
 }
-void Rotate_LL(Node *T)
-{	Node *T1 = T->Left;
-	T->Left = T1->Right; T1->Right=T;
+void Rotate_LL(Node * &T)
+{	Node *T1 = T->left;
+	T->left = T1->right; T1->right=T;
 	switch(T1->bal)
 	{
 		case 0:	 T->bal =0;
@@ -102,12 +117,12 @@ void Rotate_LL(Node *T)
 	T=T1;
 }
 
-void Rotate_LR(Node *T){
-
+void Rotate_LR(Node *&T){
+// continue ???
 }
-void Rotate_RR(Node *T){
-
+void Rotate_RR(Node *&T){
+// continue ???
 }
-void Rotate_RL(Node *T){
-
+void Rotate_RL(Node *&T){
+// continue ???
 }
