@@ -12,9 +12,10 @@ struct Tree{
     Node * root;
     int NumberNode;
 };
-Node* createNode(int);
+Node* CreateNode(int);
 void InitTree(Tree &);
-bool put(Node*,Tree &);
+bool Put(Node*,Tree &);
+int PutDQ(Node *root, int x)
 void TravelNLR(Node*);
 void TravelLNR(Node*);
 void TravelLRN(Node*);
