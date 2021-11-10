@@ -10,7 +10,8 @@ int Hash(int k, int M)
   return (k % M); }
 
 void InitHash(Word *&U, int M)
-{ Word K[5];
+{   Word K[5];
+
     K[0].key = 1;//MSSV
     strcpy(K[0].value, "Messi");
     K[1].key = 3;
@@ -24,14 +25,15 @@ void InitHash(Word *&U, int M)
     int i, pos;
     for(i = 0; i < M; i++)
     U[i].key = 0;
+
     for(i = 0; i < 5; i++)
     { pos = Hash(K[i].key, M);
-    U[pos] = K[i];
+      U[pos] = K[i];
     }
 }
 int main()
 {
-   int M = 10;
+    int M = 10;
     Word *U = new Word[M];
     int pos;
     InitHash(U, M);
