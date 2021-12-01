@@ -9,6 +9,7 @@ class Element
         Element(int data);
         void setData(int data);
         int getData();
+        Element * getLeft();
         virtual ~Element();
 
     protected:

@@ -3,9 +3,9 @@
 Element::Element()
 {
     //ctor
-    this.data=0;
-    this.left=NULL;
-    this.right=NULL;
+    this->data=0;
+    this->left=null;
+    this->right=NULL;
 }
 
 /** @brief (one liner)
@@ -14,11 +14,18 @@ Element::Element()
   */
  Element::Element(int data)
 {
-     this.data=data;
-     this.left=NULL;
-     this.right=NULL;
+     this->data=data;
+     this->left=NULL;
+     this->right=NULL;
 }
-
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+Element* Element::getLeft()
+{
+    return this->left;
+}
 
 Element::~Element()
 {
