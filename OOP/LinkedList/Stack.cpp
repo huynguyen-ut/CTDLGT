@@ -19,7 +19,7 @@ int Stack::getNum()
   */
 int Stack::pop()
 {
-    return this.List.deleteFirst();
+    return this->List.deleteFirst();
 }
 
 /** @brief (one liner)
@@ -28,7 +28,7 @@ int Stack::pop()
   */
 void Stack::push(int x)
 {
-    this.List.addFirst(new Element(x));
+    this->List.addFirst(new Element(x));
 }
 
 
